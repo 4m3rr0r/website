@@ -1,978 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4m3rr0r - Cybersecurity Research & CTF Specialist</title>
-    <meta name="description" content="Professional cybersecurity researcher and CTF player specializing in OSINT, forensics, cryptography, web hacking, and network security.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
-    
-    <style>
-        :root {
-            --primary-bg: #0a0e1a;
-            --secondary-bg: #1a1d29;
-            --accent-cyan: #00f5ff;
-            --accent-amber: #ffb347;
-            --text-white: #ffffff;
-            --text-gray: #e8eaed;
-            --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #0099cc 100%);
-            --gradient-secondary: linear-gradient(135deg, #ffb347 0%, #ff8c00 100%);
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-white);
-            overflow-x: hidden;
-        }
-        
-        .font-orbitron {
-            font-family: 'Orbitron', monospace;
-        }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--primary-bg) 100%);
-            position: relative;
-        }
-        
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('./resources/hero-bg-new.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .glow-text {
-            text-shadow: 0 0 30px var(--accent-cyan);
-        }
-        
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-premium {
-            background: linear-gradient(135deg, rgba(26, 29, 41, 0.9) 0%, rgba(45, 55, 72, 0.8) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-premium:hover {
-            transform: translateY(-8px) rotateX(2deg);
-            box-shadow: 0 25px 50px rgba(0, 245, 255, 0.3);
-            border-color: var(--accent-cyan);
-        }
-        
-        .cve-card-premium {
-            background: linear-gradient(135deg, rgba(26, 29, 41, 0.95) 0%, rgba(45, 55, 72, 0.9) 100%);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 245, 255, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .cve-card-premium:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 35px rgba(0, 245, 255, 0.25);
-            transform: translateY(-5px);
-        }
-        
-        .nav-premium {
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
-        }
-        
-        .nav-link-premium {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .nav-link-premium::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(-50%);
-        }
-        
-        .nav-link-premium:hover::after {
-            width: 100%;
-        }
-        
-        .skills-radar-premium {
-            width: 100%;
-            height: 500px;
-        }
-        
-        .filter-btn-premium {
-            background: rgba(26, 29, 41, 0.8);
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            color: var(--text-gray);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .filter-btn-premium.active {
-            background: var(--gradient-primary);
-            color: var(--primary-bg);
-            border-color: var(--accent-cyan);
-            font-weight: 600;
-        }
-        
-        .filter-btn-premium:hover:not(.active) {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-        
-        .typewriter-cursor-premium {
-            animation: blinkPremium 1s infinite;
-            color: var(--accent-cyan);
-        }
-        
-        @keyframes blinkPremium {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        .scroll-reveal-premium {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .scroll-reveal-premium.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent-cyan);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 1.5rem;
-            width: 2px;
-            height: calc(100% - 1rem);
-            background: linear-gradient(to bottom, var(--accent-cyan), transparent);
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        .stats-card {
-            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
-        }
-        
-        .contribution-card {
-            background: linear-gradient(135deg, rgba(26, 29, 41, 0.9) 0%, rgba(45, 55, 72, 0.8) 100%);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 245, 255, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .contribution-card:hover {
-            border-color: var(--accent-amber);
-            box-shadow: 0 15px 35px rgba(255, 179, 71, 0.25);
-            transform: translateY(-5px);
-        }
-        
-        .project-image {
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, rgba(45, 55, 72, 0.8) 100%);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .project-image:hover {
-            border-color: var(--accent-cyan);
-            transform: scale(1.02);
-        }
-        
-        .ctf-badge {
-            background: linear-gradient(135deg, rgba(255, 179, 71, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
-            border: 1px solid rgba(255, 179, 71, 0.3);
-            color: var(--accent-amber);
-        }
-        
-        .expertise-card {
-            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .expertise-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.2);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4m3rr0r — Coming Soon</title>
+  <meta name="description" content="Site under construction — Cyber Security R&D | Pentester" />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1724;
+      --accent:#ffb86b;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{background:radial-gradient(1200px 600px at 10% 10%, rgba(40,44,52,0.35), transparent), radial-gradient(900px 400px at 90% 90%, rgba(80,40,120,0.12), transparent), var(--bg);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:24px}
+
+    .card{width:100%;max-width:940px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--card);border-radius:14px;padding:36px;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+
+    .hero h1{font-size:28px;margin:0 0 6px;letter-spacing:0.4px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+
+    .sign{width:100%;height:220px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:10px;padding:18px;display:flex;align-items:center;gap:14px}
+    .cone{width:140px;height:140px;background:linear-gradient(180deg,var(--accent), #ff7a46);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 6px 18px rgba(255,120,70,0.12);transform:rotate(-12deg)}
+    .cone::after{content:'';position:absolute;bottom:-10px;left:12px;width:100px;height:18px;background:linear-gradient(90deg, rgba(0,0,0,0.12), rgba(0,0,0,0));border-radius:6px;filter:blur(6px)}
+    .cone svg{width:70px;height:70px;opacity:0.98;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.18))}
+
+    .lines{flex:1}
+    .lines .big{font-weight:700;font-size:20px;margin-bottom:6px}
+    .lines .muted{color:var(--muted);font-size:14px}
+
+    .progress{height:12px;background:var(--glass);border-radius:999px;overflow:hidden;margin-top:14px}
+    .progress > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent), #ffd8a8);border-radius:999px;animation:fill 6s ease-in-out forwards}
+    @keyframes fill{0%{width:6%}50%{width:48%}100%{width:72%}}
+
+    .meta{padding:18px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.012), transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+    .meta h3{margin:0 0 8px;font-size:16px}
+    .meta p{margin:0;color:var(--muted);font-size:13px}
+
+    .contact{display:flex;gap:8px;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);cursor:pointer;text-decoration:none;color:inherit;font-size:13px}
+
+    .right{display:flex;flex-direction:column;gap:16px}
+    .card-small{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:10px}
+    .count{font-size:40px;font-weight:700;line-height:1}
+    .tiny{color:var(--muted);font-size:13px}
+
+    .socials{display:flex;gap:8px;margin-top:8px}
+    .icon{width:36px;height:36px;border-radius:8px;background:var(--glass);display:inline-grid;place-items:center;font-weight:600}
+
+    footer{grid-column:1/-1;margin-top:8px;color:var(--muted);font-size:13px}
+
+    @media (max-width:880px){.card{grid-template-columns:1fr;max-width:720px}.right{order:2}.sign{height:160px}}
+  </style>
 </head>
 <body>
-    <!-- Premium Navigation -->
-    <nav class="nav-premium fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="font-orbitron text-2xl font-bold gradient-text">
-                    4m3rr0r
-                </div>
-                <div class="hidden md:flex space-x-10">
-                    <a href="#about" class="nav-link-premium text-gray-300 hover:text-white font-medium">About</a>
-                    <a href="#skills" class="nav-link-premium text-gray-300 hover:text-white font-medium">Skills</a>
-                    <a href="#projects" class="nav-link-premium text-gray-300 hover:text-white font-medium">Projects</a>
-                    <a href="#cves" class="nav-link-premium text-gray-300 hover:text-white font-medium">CVEs</a>
-                    <a href="#contributions" class="nav-link-premium text-gray-300 hover:text-white font-medium">Contributions</a>
-                    <a href="blog.html" class="nav-link-premium text-gray-300 hover:text-white font-medium">Blog</a>
-                    <a href="contact.html" class="nav-link-premium text-gray-300 hover:text-white font-medium">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 backdrop-blur-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#about" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">About</a>
-                <a href="#skills" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">Skills</a>
-                <a href="#projects" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">Projects</a>
-                <a href="#cves" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">CVEs</a>
-                <a href="#contributions" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">Contributions</a>
-                <a href="blog.html" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">Blog</a>
-                <a href="contact.html" class="block px-3 py-3 text-gray-300 hover:text-white font-medium">Contact</a>
-            </div>
-        </div>
-    </nav>
+  <main class="card" role="main" aria-labelledby="title">
+    <section class="hero">
+      <h1 id="title">4m3rr0r — Site under construction</h1>
+      <p>Cyber Security R&D | Pentester — working on some tools and writeups. Hosted on GitHub Pages. Want the source? Check the repo once it drops.</p>
 
-    <!-- Premium Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center relative">
-        <div class="hero-content text-center px-4 max-w-6xl mx-auto">
-            <div class="mb-12">
-                <h1 class="font-orbitron text-5xl md:text-7xl font-black mb-6">
-                    <span class="gradient-text" id="typed-handle"></span><span class="typewriter-cursor-premium">|</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-cyan-400 font-medium mb-8">Cyber Security R&D | Pentester</p>
-                <div class="flex flex-wrap justify-center gap-3 mb-6">
-                    <span class="ctf-badge px-4 py-2 rounded-full text-sm font-medium">Cybersecurity Researcher</span>
-                    <span class="ctf-badge px-4 py-2 rounded-full text-sm font-medium">CTF Player</span>
-                    <span class="ctf-badge px-4 py-2 rounded-full text-sm font-medium">OSINT Specialist</span>
-                </div>
-            </div>
-            <!-- CTF Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mb-12">
-                <div class="stats-card p-4 rounded-lg">
-                    <div class="text-2xl font-bold text-cyan-400">50+</div>
-                    <div class="text-sm text-gray-300">CTF Events</div>
-                </div>
-                <div class="stats-card p-4 rounded-lg">
-                    <div class="text-2xl font-bold text-amber-400">16+</div>
-                    <div class="text-sm text-gray-300">CVEs Found</div>
-                </div>
-                <div class="stats-card p-4 rounded-lg">
-                    <div class="text-2xl font-bold text-cyan-400">25+</div>
-                    <div class="text-sm text-gray-300">GitHub Projects</div>
-                </div>
-                <div class="stats-card p-4 rounded-lg">
-                    <div class="text-2xl font-bold text-amber-400">8+</div>
-                    <div class="text-sm text-gray-300">Years Experience</div>
-                </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#projects" class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300">
-                    View My Work
-                </a>
-                <a href="contact.html" class="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-cyan-400 hover:text-black transition-all duration-300">
-                    Let's Connect
-                </a>
-            </div>
+      <div class="sign" aria-hidden="true">
+        <div class="cone">
+          <!-- simple hazard icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L22 18H2L12 2Z" stroke="#2a0b00" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M12 8v4" stroke="#2a0b00" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.2" fill="#2a0b00"/>
+          </svg>
         </div>
+
+        <div class="lines">
+          <div class="big">We are building something cool.</div>
+          <div class="muted">A collection of tooling, writeups, and public pentest helpers. ETA: Soon(tm)</div>
+          <div class="progress" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <h3>Quick info</h3>
+        <p>Owner: <strong>4m3rr0r (Sheikh Mohammad Hasan)</strong></p>
+        <div class="contact">
+          <a class="btn" href="mailto:yourname@example.com">Email</a>
+          <a class="btn" href="https://github.com/4m3rr0r" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <footer>Need to reach me? Send an email or open an issue on GitHub.</footer>
     </section>
 
-    <!-- Enhanced About Section -->
-    <section id="about" class="py-24 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal-premium">
-                <h2 class="text-5xl font-bold mb-6 glow-text">About Me</h2>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="scroll-reveal-premium">
-                    <img src="./resources/IMG_6715.jpg" alt="Sheikh Mohammad Hasan - Cybersecurity Researcher" class="w-full max-w-lg mx-auto rounded-2xl shadow-2xl">
-                </div>
-                
-                <div class="scroll-reveal-premium space-y-10 text-gray-300">
-                    <p>
-                        I am Sheikh Mohammad Hasan, a dedicated cybersecurity researcher
-                        and CTF enthusiast with over 8 years of experience in the field. 
-                        My expertise spans OSINT, forensics, cryptography, web application security,
-                        and network security. I have a passion for uncovering vulnerabilities and enhancing 
-                        security measures to protect digital assets.
-                    
-                    <!-- <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-cyan-400 mb-2">Certifications</div>
-                            <div class="text-gray-300">OSCP, CEH, CISSP</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-amber-400 mb-2">Education</div>
-                            <div class="text-gray-300">M.S. Cybersecurity</div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
+    <aside class="right">
+      <div class="card-small">
+        <div class="tiny">Progress</div>
+        <div class="count">72%</div>
+        <div class="tiny">Stage: polishing writeups & tools</div>
+        <div class="socials">
+          <a class="icon" href="https://t.me/4m3rr0r" target="_blank" rel="noopener">TG</a>
+          <a class="icon" href="https://github.com/4m3rr0r" target="_blank" rel="noopener">GH</a>
+          <a class="icon" href="mailto:yourname@example.com">@</a>
         </div>
-    </section>
-    <!-- Skills Visualization Section -->
-    <section id="skills" class="py-24 px-4 bg-gray-900 bg-opacity-30">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal-premium">
-                <h2 class="text-5xl font-bold mb-6 glow-text">Technical Proficiency</h2>
-                <p class="text-xl text-gray-300">Comprehensive skill assessment across cybersecurity domains</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="scroll-reveal-premium">
-                    <div id="skills-radar" class="skills-radar-premium"></div>
-                </div>
-                
-                <div class="scroll-reveal-premium space-y-8">
-                    <div class="card-premium p-6 rounded-xl">
-                        <h3 class="text-2xl font-bold mb-4 text-cyan-400">Programming Languages</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="flex items-center justify-between">
-                                <span class="font-mono">Python</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-20 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-mono">C/C++</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-18 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-mono">Go</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-16 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-mono">JavaScript</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-14 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-premium p-6 rounded-xl">
-                        <h3 class="text-2xl font-bold mb-4 text-amber-400">Security Tools</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="flex items-center justify-between">
-                                <span>Burp Suite</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-20 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Metasploit</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-18 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Nmap</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-20 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Wireshark</span>
-                                <div class="w-24 h-2 bg-gray-700 rounded-full">
-                                    <div class="w-16 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-premium p-6 rounded-xl">
-                        <h3 class="text-2xl font-bold mb-4 text-cyan-400">Methodologies</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-cyan-400 rounded-full mr-3"></div>
-                                <span>OWASP Testing Guide</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-amber-400 rounded-full mr-3"></div>
-                                <span>PTES Framework</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-cyan-400 rounded-full mr-3"></div>
-                                <span>Kill Chain Analysis</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-amber-400 rounded-full mr-3"></div>
-                                <span>MITRE ATT&CK</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
 
-    <!-- Premium Projects Section -->
-    <section id="projects" class="py-24 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal-premium">
-                <h2 class="text-5xl font-bold mb-6 glow-text">Research & Development</h2>
-                <p class="text-xl text-gray-300 mb-8">Advanced cybersecurity tools and research projects</p>
-                
-                <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <button class="filter-btn-premium active px-6 py-3 rounded-lg font-medium" data-filter="all">All Projects</button>
-                    <button class="filter-btn-premium px-6 py-3 rounded-lg font-medium" data-filter="pentesting">Penetration Testing</button>
-                    <button class="filter-btn-premium px-6 py-3 rounded-lg font-medium" data-filter="tooling">Offensive Tooling</button>
-                    <button class="filter-btn-premium px-6 py-3 rounded-lg font-medium" data-filter="research">Research</button>
-                    <button class="filter-btn-premium px-6 py-3 rounded-lg font-medium" data-filter="redteam">Red Team</button>
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="tooling">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <img src="./resources/project-terminal.jpg" alt="Reverse Shell WordPress Plugin" class="w-full h-full object-cover rounded-lg">
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-cyan-400">Reverse Shell WordPress Plugin</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            A sophisticated WordPress plugin that provides advanced reverse shell capabilities for post-exploitation scenarios. 
-                            Features encrypted communication, persistence mechanisms, and evasion techniques.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">PHP</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">WordPress</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Reverse Shell</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/Reverse-Shell-WordPress-Plugin" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 1.2k</div>
-                    </div>
-                </div>
-                
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="tooling">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <div class="text-6xl text-cyan-400">🔍</div>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-cyan-400">Zero-Setup BreachHunter</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            Automated breach detection tool with zero configuration required. Scans for compromised credentials, 
-                            data leaks, and security breaches across multiple platforms and databases.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Python</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">OSINT</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Breach Detection</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/Zero-Setup-BreachHunter" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 890</div>
-                    </div>
-                </div>
-                
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="redteam">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <div class="text-6xl text-amber-400">📡</div>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-amber-400">TeleC2</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            Advanced Telegram-based Command and Control system for red team operations. Features encrypted communications, 
-                            fileless execution, and advanced stealth capabilities for persistent access.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Python</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">Telegram API</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">C2</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/TeleC2" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 2.1k</div>
-                    </div>
-                </div>
-                
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="research">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <div class="text-6xl text-cyan-400">🔬</div>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-cyan-400">CVE Research Framework</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            Automated vulnerability research framework for discovering and analyzing security vulnerabilities. 
-                            Integrates static analysis, fuzzing, and machine learning for comprehensive vulnerability discovery.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Python</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">ML</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Automation</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/CVE-Research-Framework" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 756</div>
-                    </div>
-                </div>
-                
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="pentesting">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <div class="text-6xl text-amber-400">🌐</div>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-amber-400">Web App Exploitation Kit</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            Comprehensive web application penetration testing toolkit with automated vulnerability detection, 
-                            exploitation modules, and advanced payload generation capabilities.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">JavaScript</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">Burp Suite</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Web Security</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/Web-App-Exploitation-Kit" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 1.4k</div>
-                    </div>
-                </div>
-                
-                <div class="card-premium p-8 rounded-2xl scroll-reveal-premium" data-category="tooling">
-                    <div class="project-image mb-6 h-48 rounded-lg flex items-center justify-center">
-                        <div class="text-6xl text-cyan-400">🗺️</div>
-                    </div>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold mb-3 text-cyan-400">Network Scanner Pro</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">
-                            Advanced network reconnaissance tool with service detection, vulnerability scanning, 
-                            and intelligent exploitation suggestions. Supports large-scale network assessments.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Go</span>
-                        <span class="px-3 py-1 bg-amber-400 bg-opacity-20 text-amber-400 text-sm rounded-full border border-amber-400 border-opacity-30">Network Security</span>
-                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 text-sm rounded-full border border-cyan-400 border-opacity-30">Reconnaissance</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <a href="https://github.com/4m3rr0r/Network-Scanner-Pro" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <div class="text-sm text-gray-400">★ 967</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced CVEs Section -->
-    <section id="cves" class="py-24 px-4 bg-gray-900 bg-opacity-30">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal-premium">
-                <h2 class="text-5xl font-bold mb-6 glow-text">Vulnerability Research</h2>
-                <p class="text-xl text-gray-300 mb-8">Discovered and responsibly disclosed vulnerabilities</p>
-                
-                <div class="max-w-md mx-auto mb-12">
-                    <input type="text" id="cve-search" placeholder="Search CVE database..." class="w-full px-6 py-4 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-50">
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="cve-grid">
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-7534">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-7534</span>
-                        <span class="px-3 py-1 bg-red-600 text-xs rounded-full text-white font-bold">CRITICAL</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">Remote Code Execution</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        Buffer overflow vulnerability in popular web application allowing remote attackers to execute arbitrary code with system privileges.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 9.8</span>
-                        <span>Published: Jan 15, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-red-600 bg-opacity-20 text-red-400 text-xs rounded">Buffer Overflow</span>
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">RCE</span>
-                    </div>
-                </div>
-                
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-7542">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-7542</span>
-                        <span class="px-3 py-1 bg-orange-600 text-xs rounded-full text-white font-bold">HIGH</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">SQL Injection</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        SQL injection vulnerability in authentication module allowing unauthorized database access and privilege escalation.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 8.1</span>
-                        <span>Published: Jan 22, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">SQL Injection</span>
-                        <span class="px-2 py-1 bg-yellow-600 bg-opacity-20 text-yellow-400 text-xs rounded">Auth Bypass</span>
-                    </div>
-                </div>
-                
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-7543">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-7543</span>
-                        <span class="px-3 py-1 bg-orange-600 text-xs rounded-full text-white font-bold">HIGH</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">Privilege Escalation</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        Local privilege escalation vulnerability in system service allowing attackers to gain root access through improper validation.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 7.8</span>
-                        <span>Published: Jan 23, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">Privilege Escalation</span>
-                        <span class="px-2 py-1 bg-red-600 bg-opacity-20 text-red-400 text-xs rounded">LPE</span>
-                    </div>
-                </div>
-                
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-7885">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-7885</span>
-                        <span class="px-3 py-1 bg-yellow-600 text-xs rounded-full text-white font-bold">MEDIUM</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">Cross-Site Scripting</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        Reflected XSS vulnerability in web application input validation allowing session hijacking and data theft.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 6.1</span>
-                        <span>Published: Feb 10, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-yellow-600 bg-opacity-20 text-yellow-400 text-xs rounded">XSS</span>
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">Session Hijacking</span>
-                    </div>
-                </div>
-                
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-12288">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-12288</span>
-                        <span class="px-3 py-1 bg-orange-600 text-xs rounded-full text-white font-bold">HIGH</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">Authentication Bypass</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        Logic flaw in authentication system allowing unauthorized access to protected resources and administrative functions.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 8.3</span>
-                        <span>Published: Mar 15, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">Auth Bypass</span>
-                        <span class="px-2 py-1 bg-red-600 bg-opacity-20 text-red-400 text-xs rounded">Logic Flaw</span>
-                    </div>
-                </div>
-                
-                <div class="cve-card-premium p-6 rounded-xl scroll-reveal-premium" data-cve="CVE-2025-12287">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-cyan-400 font-bold text-lg">CVE-2025-12287</span>
-                        <span class="px-3 py-1 bg-red-600 text-xs rounded-full text-white font-bold">CRITICAL</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white">Arbitrary File Upload</h3>
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        Unrestricted file upload vulnerability allowing malicious file execution on server leading to complete system compromise.
-                    </p>
-                    <div class="flex justify-between items-center text-xs text-gray-400 mb-4">
-                        <span>CVSS: 9.1</span>
-                        <span>Published: Mar 14, 2025</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-red-600 bg-opacity-20 text-red-400 text-xs rounded">File Upload</span>
-                        <span class="px-2 py-1 bg-orange-600 bg-opacity-20 text-orange-400 text-xs rounded">RCE</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Contributions Section -->
-    <section id="contributions" class="py-24 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal-premium">
-                <h2 class="text-5xl font-bold mb-6 glow-text">Open Source Impact</h2>
-                <p class="text-xl text-gray-300">Contributing to the global cybersecurity community</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-cyan-400">sqlmap</h3>
-                            <p class="text-gray-400">Automatic SQL injection exploitation</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Contributed advanced SQL injection detection payloads and exploitation techniques. 
-                        Enhanced database fingerprinting and WAF evasion capabilities.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">15+ Contributions</span>
-                        <span class="text-cyan-400 font-semibold">Core Contributor</span>
-                    </div>
-                </div>
-                
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-amber-400">Nuclei Templates</h3>
-                            <p class="text-gray-400">Vulnerability detection templates</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Created comprehensive vulnerability detection templates for various web applications and services. 
-                        Focused on zero-day and emerging threat detection.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">50+ Templates</span>
-                        <span class="text-amber-400 font-semibold">Maintainer</span>
-                    </div>
-                </div>
-                
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-cyan-400">Security Tools</h3>
-                            <p class="text-gray-400">Various open-source projects</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Contributed to multiple open-source security tools and frameworks including Metasploit, 
-                        OWASP ZAP, and custom penetration testing utilities.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">25+ Contributions</span>
-                        <span class="text-cyan-400 font-semibold">Active Contributor</span>
-                    </div>
-                </div>
-                
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-amber-400">Research Papers</h3>
-                            <p class="text-gray-400">Academic and industry publications</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Published research papers on advanced exploitation techniques, vulnerability discovery methodologies, 
-                        and cybersecurity best practices in peer-reviewed journals.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">8 Publications</span>
-                        <span class="text-amber-400 font-semibold">Researcher</span>
-                    </div>
-                </div>
-                
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
-                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-cyan-400">Conference Talks</h3>
-                            <p class="text-gray-400">Security conference presentations</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Presented at major cybersecurity conferences including DEF CON, Black Hat, and local security meetups. 
-                        Topics include exploit development and red team tactics.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">12 Presentations</span>
-                        <span class="text-cyan-400 font-semibold">Speaker</span>
-                    </div>
-                </div>
-                
-                <div class="contribution-card p-8 rounded-2xl scroll-reveal-premium">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl flex items-center justify-center mr-4">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-amber-400">Bug Bounty</h3>
-                            <p class="text-gray-400">Vulnerability disclosure programs</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6">
-                        Active participation in bug bounty programs for major technology companies. 
-                        Consistently ranked in top tiers of vulnerability disclosure platforms.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">100+ Reports</span>
-                        <span class="text-amber-400 font-semibold">Top Researcher</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professional CTA Section -->
-    <section class="py-24 px-4 bg-gradient-to-r from-gray-900 to-gray-800">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 glow-text">Ready to Collaborate?</h2>
-            <p class="text-xl text-gray-300 mb-12">
-                Whether it's vulnerability research, penetration testing, or security tool development, 
-                I'm here to help advance your cybersecurity initiatives.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="contact.html" class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-cyan-400/25 transition-all duration-300 transform hover:-translate-y-1">
-                    Start a Project
-                </a>
-                <a href="blog.html" class="border-2 border-cyan-400 text-cyan-400 px-10 py-4 rounded-xl font-semibold text-lg hover:bg-cyan-400 hover:text-black transition-all duration-300 transform hover:-translate-y-1">
-                    Read Research
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Premium Footer -->
-    <footer class="py-16 px-4 border-t border-gray-800 bg-gray-900 bg-opacity-50">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="font-orbitron text-3xl font-bold gradient-text mb-6">4m3rr0r</div>
-            <p class="text-gray-400 mb-8 text-lg">Professional Cybersecurity Research & CTF Specialist</p>
-            <div class="flex justify-center space-x-8 mb-8">
-                <a href="https://github.com/4m3rr0r" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="mailto:contact@4m3rr0r.com" class="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-            </div>
-            <p class="text-gray-600 text-sm mb-4">© 2025 Sheikh Mohammad Hasan (4m3rr0r). All rights reserved.</p>
-            <p class="text-gray-500 text-xs">Licensed cybersecurity professional • CTF Player • Security researcher</p>
-        </div>
-    </footer>
-
-    <!-- Premium JavaScript -->
-    <script src="main.js"></script>
+      <div class="card-small">
+        <div class="tiny">Need to share a report?</div>
+        <p style="margin:8px 0 0;color:var(--muted);font-size:13px">If you found a security issue on this domain, please email <strong>security@4m3rr0r.me</strong> with details.</p>
+      </div>
+    </aside>
+  </main>
 </body>
 </html>
